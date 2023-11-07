@@ -12,6 +12,11 @@ export const appReducer = (state = initialState, { type, payload }) => {
         ...state,
         isLoading: payload 
       }
+    case appAction.SET_THEME:
+      return {
+        ...state,
+        theme: payload.theme
+      }
     default:
       return state;
   }

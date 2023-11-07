@@ -1,14 +1,15 @@
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore, applyMiddleware } from "redux";
 
 import { appReducer } from '../redux/app.reducer';
 import { todoReducer } from "../redux/todo.reducer";
+import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
   app: appReducer,
   todo: todoReducer,
 })
 
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer, applyMiddleware(thunk));
 
 /*
 store = {
@@ -34,6 +35,14 @@ const storeReducer = {
       return {
         ...state,
         todos: payload 
+      }
+    case todoAction.APP_CHANGE_THEME:
+      return {
+        ...state,
+        app: {
+          ...state.app,
+          theme: payload
+        }
       }
     case todoAction.ADD_TODO: {
       return {

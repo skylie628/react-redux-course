@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
-import { addTodo } from '../redux/todo.action';
-import { setLoading } from '../redux/app.action';
+import { addTodoThunk } from '../redux/todo.action';
+import { setTheme } from '../redux/app.action';
 
 function TodoForm() {
   const dispatch = useDispatch();
@@ -11,17 +11,18 @@ function TodoForm() {
       id: Date.now(),
       title: `Todo Item ${Date.now()}`,
     }
-    dispatch(setLoading(true));
+    dispatch(addTodoThunk(todoItem))
+  }
 
-    setTimeout(() => {
-      dispatch(addTodo(todoItem))
-      dispatch(setLoading(false));
-    }, 1000);
-
+  function handeChangeTheme() {
+    dispatch(setTheme('dark'))
   }
 
   return (
-    <div><button type='button' onClick={handleAddTodo}>Add Todo</button></div>
+    <div>
+      <button type='button' onClick={handleAddTodo}>Add Todo</button>
+      <button type='button' onClick={handeChangeTheme}>Change Theme</button>
+    </div>
   )
 }
 

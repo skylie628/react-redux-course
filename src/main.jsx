@@ -23,3 +23,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 - create action creator
 - create reducer
 */
+
+/* curry function sum(2)(3)(4) = 9
+closure function
+function sum(a) {
+  return function(b) {
+    return function(c) {
+      return a + b + c;
+    }
+  }
+}
+
+
+*/

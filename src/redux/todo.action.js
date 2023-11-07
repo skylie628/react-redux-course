@@ -1,3 +1,5 @@
+import * as appActions from './app.action';
+
 export const FETCH_TODO = 'TODO/FETCH_TODO';
 export const ADD_TODO = 'TODO/ADD_TODO';
 export const DELETE_TODO = 'APP/DELETE_TODO';
@@ -19,3 +21,19 @@ export const deleteTodo = todoId => ({
     todoId
   }
 })
+
+// thunk
+export const addTodoThunk = todo => (dispatch, getState) => {
+  const todos = getState().todo.todos;
+  if(todos.length >= 12) {
+    alert('Todo list is full');
+    return;
+  }
+
+  dispatch(appActions.setLoading(true));
+
+  setTimeout(() => {
+    dispatch(addTodo(todo))
+    dispatch(appActions.setLoading(false));
+  }, 1000);
+}

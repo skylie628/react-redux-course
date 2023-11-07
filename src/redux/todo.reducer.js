@@ -2,7 +2,8 @@ import * as todoAction from './todo.action';
 
 const initialState = {
  todos: [],
- todoItem: null
+ todoItem: null,
+ theme: 'xx'
 }
 
 export const todoReducer = (state = initialState, { type, payload }) => {

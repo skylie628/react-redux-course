@@ -1,9 +1,12 @@
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteTodo, fetchTodo } from '../redux/todo.action';
 
 function Dashboard() {
   const dispatch = useDispatch();
   const todos = useSelector(state => state.todo.todos);
+  const theme = useSelector(state => state.app.theme);
+  console.log("state", theme);
 
   function handleDeleteTodo(todoId) {
     // const clonedTodos = [...todos];
@@ -12,6 +15,12 @@ function Dashboard() {
 
     dispatch(deleteTodo(todoId))
   }
+
+  React.useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos?_limit=10&_page=1')
+      .then(response => response.json())
+      .then(json => dispatch(fetchTodo(json)))
+  }, [])
 
   return (
     <div>
