@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteTodo, fetchTodo } from '../redux/todo.action';
+import { deleteTodo, fetchTodoThunk } from '../redux/todo.action';
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -17,9 +17,7 @@ function Dashboard() {
   }
 
   React.useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos?_limit=10&_page=1')
-      .then(response => response.json())
-      .then(json => dispatch(fetchTodo(json)))
+    dispatch(fetchTodoThunk('https://jsonplaceholder.typicode.com/todos?_limit=10&_page=1'))
   }, [])
 
   return (

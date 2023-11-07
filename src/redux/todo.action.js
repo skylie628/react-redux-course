@@ -37,3 +37,9 @@ export const addTodoThunk = todo => (dispatch, getState) => {
     dispatch(appActions.setLoading(false));
   }, 1000);
 }
+
+export const fetchTodoThunk = (url) => dispatch => {
+  fetch(url)
+  .then(response => response.json())
+  .then(json => dispatch(fetchTodo(json)))  
+}
