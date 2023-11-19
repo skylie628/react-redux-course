@@ -20,6 +20,12 @@ function Dashboard() {
     dispatch(fetchTodoThunk('https://jsonplaceholder.typicode.com/todos?_limit=10&_page=1'))
   }, [])
 
+  React.useEffect(() => {
+      fetch('https://cms-murex-seven.vercel.app/api/user?page=1&limit=10')
+        .then(response => response.json())
+        .then(data => console.log(data))
+  }, [])
+
   return (
     <div>
       Todos: {todos.length} <br />
